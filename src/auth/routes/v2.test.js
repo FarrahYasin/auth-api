@@ -1,7 +1,6 @@
 
 'use strict';
 const base64 = require('base-64')
-const bcrypt = require('bcrypt')
 const { server } = require('../../server');
 const supertest = require("supertest");
 const muckReq = supertest(server)
@@ -80,6 +79,30 @@ describe('test', () => {
    
        expect(response.status).toBe(202);
      });
+  
+///test v2 clothes
+
+     // const token = jwt.sign({ username: 'farah34', password: 'password' , role : 'admin'} , process.env.SECRET || "farah" )
+     it('/api/v2/clothes Can create a new model if the role was admin', async () => {
+     const res = await muckReq.post('/api/v2/clothes').set('Authorization', `Bearer ${token}`).send({ name: 'jacket', color: "purple" , size : 'small'})
+         expect(res.status).toBe(200);
    });
-
-
+     it(' Can get all /api/v2/clothes' ,async () =>{
+          const res = await muckReq.get('/api/v2/clothes')
+          .set('Authorization', `Bearer ${token}`)
+         expect(res.status).toBe(200);
+     })
+     it('can get one /api/v2/clothes/id' ,async () =>{
+          const res = await muckReq.get(`/api/v2/clothes/1`)
+          .set('Authorization', `Bearer ${token}`)
+          expect(res.status).toBe(200);
+     })
+     it('can update one /api/v2/clothes/id' ,async () =>{
+          const res = await muckReq.put(`/api/v2/clothes/1`).set('Authorization', `Bearer ${token}`).send({ name: 'jacket22', color: "red" , size : 'large'})
+          expect(res.status).toBe(200);
+     })
+     it('can delete one /api/v2/clothes/id' ,async () =>{
+          const res = await muckReq.delete(`/api/v2/clothes/1`).set('Authorization', `Bearer ${token}`)
+          expect(res.status).toBe(202);
+     })
+ })
