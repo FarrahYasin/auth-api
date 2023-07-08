@@ -38,7 +38,7 @@ authRouter.get('/users', bearerAuth, permissions('delete'), async (req, res, nex
 authRouter.get('/secret', bearerAuth, async (req, res, next) => {
   res.status(200).send('Welcome to the secret area')
 });
-authRouter.get('/', bearerAuth, async (req, res, next) => {
+authRouter.get('/', async (req, res, next) => {
   res.status(200).send('Welcome to Home page')
 });
 
