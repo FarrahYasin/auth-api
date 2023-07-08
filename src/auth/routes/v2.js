@@ -38,7 +38,7 @@ async function handleGetOne(req, res) {
 async function handleCreate(req, res) {
   let obj = req.body;
   let newRecord = await req.model.create(obj);
-  res.status(201).json(newRecord);
+  res.status(200).json(newRecord);
 }
 
 async function handleUpdate(req, res) {
@@ -51,7 +51,7 @@ async function handleUpdate(req, res) {
 async function handleDelete(req, res) {
   let id = req.params.id;
   let deletedRecord = await req.model.delete(id);
-  res.status(200).json(deletedRecord);
+  res.status(202).json(deletedRecord);
 }
 
 
