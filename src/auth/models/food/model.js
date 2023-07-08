@@ -1,6 +1,6 @@
 'use strict';
 
-const foodModel = (sequelize, DataTypes) => sequelize.define('foods', {
+const foodModel = (sequelize, DataTypes) => sequelize.define('foods1', {
   name: { 
     type: DataTypes.STRING,
      required: true
